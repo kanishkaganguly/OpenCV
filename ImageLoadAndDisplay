@@ -1,0 +1,34 @@
+#include <opencv\cv.h>
+#include <opencv\highgui.h>
+#include <stdio.h>
+
+using namespace cv;
+using namespace std;
+
+int main(){
+  //Declaring the IplImage data structure
+	IplImage* img;
+
+	//Load image glass.jpg (1 means color image)
+	img = cvLoadImage("C:/glass.jpg", 1);
+	if (!img) {
+		printf("Error: Couldn't open the image file.\n");
+		return 1;
+	}
+	//CREATE A NEW WINDOW
+	cvNamedWindow("Window", 1);
+
+	//DISPLAY IMAGE IN WINDOW
+	cvShowImage("Window", img);
+
+	//WAIT FOR KEY TO CLOSE WINDOW
+	cvWaitKey(0);
+
+	//DESTROY WINDOW
+	cvDestroyWindow("Window");
+
+	//RELEASE MEMORY OCCUPIED BY IMAGE
+	cvReleaseImage(&img);
+
+	return 0;
+}
