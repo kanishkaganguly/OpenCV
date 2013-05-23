@@ -1,0 +1,24 @@
+#include<opencv\cv.h>
+#include<opencv\highgui.h>
+#include<stdio.h>
+
+int main(){
+  //New Capture Object
+  CvCapture* cap = cvCaptureFromCAM(CV_CAP_ANY);
+	if(!cap){
+		printf("NO CAMERA FOUND");
+		return -1;
+	}else{
+  //New Window to Display Image
+		cvNamedWindow("Window", CV_WINDOW_KEEPRATIO);
+		while(1){
+    //New IplImage Object
+			IplImage* img = cvQueryFrame(cap);
+			cvShowImage("Window", img);
+			if(cvWaitKey(10) == 27){break;}
+		}
+		cvReleaseCapture(&cap);
+		cvDestroyWindow("Window");
+		return 0;
+	}
+}
